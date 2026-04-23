@@ -4,10 +4,10 @@ import { UserRole } from './core/models/models'
 
 export const routes: Routes = [
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./core/features/login/pages/login.component')
-        .then(m => m.LoginComponent)
+    path: 'auth',
+    loadChildren: () =>
+      import('./core/features/auth/auth.routes')
+        .then(m => m.AUTH_ROUTES)
   },
 
   {
