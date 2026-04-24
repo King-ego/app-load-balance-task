@@ -12,9 +12,9 @@ export const routes: Routes = [
 
   {
     path: '',
-    loadComponent: () =>
-      import('./core/features/home/pages/home.component')
-        .then(m => m.HomeComponent)
+    loadChildren: () =>
+      import('./core/features/home/home.routes')
+        .then(m => m.HOME_ROUTES)
   },
   {
     path: 'admin',
