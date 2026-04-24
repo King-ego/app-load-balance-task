@@ -4,7 +4,7 @@ export const COMPANY_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/dashboard.component')
+      import('./pages/dashboard/company.dashboard.component')
         .then(m => m.CompanyDashboardComponent)
   }
 ]
