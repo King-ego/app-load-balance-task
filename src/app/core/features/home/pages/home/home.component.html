@@ -1,0 +1,9 @@
+<div>
+  <ng-container *ngIf="user$ | async as users">
+    <div *ngFor="let u of users">
+      <p>Users: {{ u.username }}</p>
+      <p>Tasks: {{ u.email }}</p>
+      <p>Points: {{ u.points }}</p>
+    </div>
+  </ng-container>
+</div>
