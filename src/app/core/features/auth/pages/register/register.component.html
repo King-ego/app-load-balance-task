@@ -1,1 +1,72 @@
-<p>register works!</p>
+<mat-toolbar color="primary">
+  <span>HomeTask</span>
+
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/">Home</button>
+  <button mat-button routerLink="/login">Login</button>
+</mat-toolbar>
+
+<div class="register-container">
+  <mat-card class="register-card">
+
+    <mat-card-header>
+      <mat-card-title>Criar sua conta</mat-card-title>
+      <mat-card-subtitle>
+        Organize as tarefas da sua casa com sua família
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form class="form">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <label>
+            <input matInput placeholder="Seu nome">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <label>
+            <input matInput type="email" placeholder="seu@email.com">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <label>
+            <input matInput type="password">
+          </label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar senha</mat-label>
+          <label>
+            <input matInput type="password">
+          </label>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="register-button"
+        >
+          Criar conta
+        </button>
+
+        <div class="google-login">
+          <div id="googleBtn"></div>
+        </div>
+
+        <div class="login-link">
+          Já possui conta?
+          <a routerLink="/login">Entrar</a>
+        </div>
+
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</div>
