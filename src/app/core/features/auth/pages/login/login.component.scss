@@ -1,0 +1,67 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.login-container {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #3f51b5, #5c6bc0);
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.login-button {
+  margin-top: 8px;
+}
+
+.register-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.register-link a {
+  text-decoration: none;
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.divider {
+  text-align: center;
+  margin: 10px 0;
+  position: relative;
+}
+
+.divider span {
+  background: white;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.divider::before {
+  content: "";
+  height: 1px;
+  background: #ddd;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+}
+
+.google-login {
+  display: flex;
+  justify-content: center;
+}
