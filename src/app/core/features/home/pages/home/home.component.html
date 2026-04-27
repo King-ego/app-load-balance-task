@@ -1,3 +1,4 @@
+<!--
 <div>
   <ng-container *ngIf="user$ | async as users">
     <div *ngFor="let u of users">
@@ -7,3 +8,85 @@
     </div>
   </ng-container>
 </div>
+-->
+<mat-toolbar color="primary" class="toolbar">
+  <span class="logo">HomeTask</span>
+
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/auth/login">Login</button>
+  <button mat-button color="accent" routerLink="/auth/register">
+    Criar Conta
+  </button>
+</mat-toolbar>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Organize as tarefas da sua casa sem estresse</h1>
+
+    <p>
+      O HomeTask ajuda você e sua família a dividir tarefas domésticas,
+      acompanhar responsabilidades e garantir que tudo seja feito no prazo.
+      Mais organização, menos discussão.
+    </p>
+
+    <div class="hero-actions">
+      <button mat-raised-button color="primary" routerLink="/register">
+        Começar Agora
+      </button>
+
+      <button mat-stroked-button routerLink="/login">
+        Já tenho conta
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="features">
+  <h2>Como funciona</h2>
+
+  <div class="features-grid">
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Crie tarefas</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        Defina tarefas domésticas como lavar louça, limpar a casa,
+        tirar o lixo e muito mais.
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Divida responsabilidades</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        Atribua tarefas para membros da casa e acompanhe quem fez
+        ou deixou de fazer.
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Acompanhe tudo</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        Visualize tarefas pendentes, concluídas e mantenha
+        sua casa organizada.
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Comece a organizar sua casa hoje</h2>
+
+  <button mat-raised-button color="accent" routerLink="/register">
+    Criar Conta Gratuitamente
+  </button>
+</section>
