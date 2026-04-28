@@ -1,12 +1,13 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {MaterialModule} from "../../../../../shared/material.module";
 import {environment} from "../../../../../../../environment";
+import {HeaderComponent} from "../../../../../shared/components/header/header.components";
 
 declare const google: any;
 
 @Component({
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
