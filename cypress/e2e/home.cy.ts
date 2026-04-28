@@ -21,6 +21,9 @@ describe("HomePage", () => {
     cy.contains("Login").click()
 
     cy.url().should("include", "/auth/login")
+
+    cy.get("mat-toolbar").contains("button", "Home").click()
+    cy.url().should("include", "/home")
   })
 
   it("should click pages and navigate to pages page", () => {
@@ -29,5 +32,8 @@ describe("HomePage", () => {
     cy.contains("Criar Conta").click()
 
     cy.url().should("include", "/auth/register")
+
+    cy.get("mat-toolbar").contains("button", "Home").click()
+    cy.url().should("include", "/home")
   })
 })
