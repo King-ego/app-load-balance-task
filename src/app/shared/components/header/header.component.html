@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span class="logo">HomeTask</span>
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/home" *ngIf="!isHome">Home</button>
+
+  <button mat-button routerLink="/auth/login" *ngIf="!isLogin && !isLoggedIn">Login</button>
+
+  <button mat-button routerLink="/auth/register" *ngIf="!isRegister && !isLoggedIn">Criar Conta</button>
+
+  <button mat-button routerLink="/dashboard" *ngIf="isLoggedIn">Acessar</button>
+</mat-toolbar>
