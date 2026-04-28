@@ -1,13 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
 import {MaterialModule} from "../../../../../shared/material.module";
 import {environment} from "../../../../../../../environment";
+import {HeaderComponent} from "../../../../../shared/components/header/header.components";
 
 declare const google: any;
 
 @Component({
   selector: 'app-pages',
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule, HeaderComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
