@@ -8,5 +8,6 @@ describe('Login Page', () => {
     cy.get('#email_field').should('have.value', 'john@gmail.com')
     cy.get('#password_field').should('have.value', 'MinhaSenha@123')
 
+    cy.contains('button', 'Entrar').click()
   });
 })
