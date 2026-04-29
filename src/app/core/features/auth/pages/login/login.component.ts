@@ -3,6 +3,8 @@ import {MaterialModule} from "../../../../../shared/material.module";
 import {environment} from "../../../../../../../environment";
 import {HeaderComponent} from "../../../../../shared/components/header/header.components";
 import {FormBuilder, Validators, ReactiveFormsModule} from "@angular/forms";
+import {ApiService} from "../../../../services/api.service";
+import {Router} from "@angular/router";
 
 declare const google: any;
 
@@ -13,15 +15,31 @@ declare const google: any;
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements AfterViewInit {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiLogin: ApiService, private router: Router) {
   }
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(2)]]
    });
 
   submit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const { email, password } = this.form.value as { email: string; password: string };
+
+    this.apiLogin.setLogin(email, password).subscribe({
+      next: (response) => {
+        console.log('Login successful:', response);
+        this.router.navigate(['/member']);
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+      }
+    });
     console.log(this.form.value)
   }
 
