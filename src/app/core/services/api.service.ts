@@ -28,4 +28,12 @@ export class ApiService {
     return this.http.get<User[]>(`${this.base}/users`);
   }
 
+  setLogin(email: string, password: string) {
+    return this.http.post(`${this.base}/auth/login`, { email, password }, { withCredentials: true });
+  }
+
+  setLogout() {
+    return this.http.post(`${this.base}/auth/logout`, {}, { withCredentials: true });
+  }
+
 }
