@@ -1,42 +1,65 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { BehaviorSubject, Observable, tap } from 'rxjs'
 import { User, UserRole } from '../models'
+
+type LoginRequest = {
+  email: string
+  password: string
+}
+
+type LoginResponse = {
+  user: User
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
   private userSubject = new BehaviorSubject<User | null>(null)
-
   user$ = this.userSubject.asObservable()
 
-  login(role: UserRole) {
-    const mock: User = {
-      id: '1',
-      username: 'diego',
-      email: 'diego@email.com',
-      role,
-      companyId: '1',
-      points: 120
-    }
+  constructor(private http: HttpClient) {}
 
-    localStorage.setItem('token', 'mock-jwt')
-    this.userSubject.next(mock)
+  login(payload: LoginRequest): Observable<LoginResponse> {
+    return this.http
+      .post<LoginResponse>('/auth/login', payload, { withCredentials: true })
+      .pipe(
+        tap((res) => {
+          this.userSubject.next(res.user)
+        })
+      )
+  }
+
+  logout(): Observable<void> {
+    return this.http
+      .post<void>('/auth/logout', {}, { withCredentials: true })
+      .pipe(
+        tap(() => {
+          this.userSubject.next(null)
+        })
+      )
+  }
+
+  me(): Observable<User> {
+    return this.http.get<User>('/auth/me', { withCredentials: true }).pipe(
+      tap((user) => {
+        this.userSubject.next(user)
+      })
+    )
   }
 
   get user() {
     return this.userSubject.value
   }
 
-  logout() {
-    localStorage.removeItem('token')
-    this.userSubject.next(null)
-  }
-
   hasRole(roles: UserRole[]) {
-    return roles.includes(this.user?.role!)
+    return !!this.user && roles.includes(this.user.role)
   }
 
   userValue(): User | null {
-    return this.userSubject.value;
+    return this.userSubject.value
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.userSubject.value
   }
 }
