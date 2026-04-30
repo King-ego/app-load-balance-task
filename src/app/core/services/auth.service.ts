@@ -18,7 +18,22 @@ export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null)
   user$ = this.userSubject.asObservable()
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const stored = localStorage.getItem('currentUser')
+    if (stored) {
+      try {
+        this.userSubject.next(JSON.parse(stored) as User)
+      } catch {
+        localStorage.removeItem('currentUser')
+      }
+    }
+
+    // tenta sincronizar com o backend (sessão por cookie). em erro limpa o usuário.
+    this.me().subscribe({
+      next: () => {},
+      error: () => this.setUser(null)
+    })
+  }
 
   login(payload: LoginRequest): Observable<LoginResponse> {
     return this.http
@@ -71,5 +86,15 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.userSubject.value
+  }
+
+  me(): Observable<User> {
+    return this.http
+      .get<User>(`${this.base}/auth/me`, { withCredentials: true })
+      .pipe(
+        tap((user) => {
+          this.setUser(user)
+        })
+      )
   }
 }
