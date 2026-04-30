@@ -5,6 +5,8 @@ import {HeaderComponent} from "../../../../../shared/components/header/header.co
 import {FormBuilder, Validators, ReactiveFormsModule} from "@angular/forms";
 import {ApiService} from "../../../../services/api.service";
 import {Router} from "@angular/router";
+import {User} from "../../../../models";
+import {AuthService} from "../../../../services/auth.service";
 
 declare const google: any;
 
@@ -15,7 +17,11 @@ declare const google: any;
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements AfterViewInit {
-  constructor(private fb: FormBuilder, private apiLogin: ApiService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private apiLogin: ApiService,
+    private router: Router,
+    private auth: AuthService) {
   }
 
   form = this.fb.group({
@@ -32,8 +38,8 @@ export class LoginComponent implements AfterViewInit {
     const { email, password } = this.form.value as { email: string; password: string };
 
     this.apiLogin.setLogin(email, password).subscribe({
-      next: (response) => {
-        console.log('Login successful:', response);
+      next: (user: User) => {
+        this.auth.setUser(user);
         this.router.navigate(['/member']);
       },
       error: (error) => {
