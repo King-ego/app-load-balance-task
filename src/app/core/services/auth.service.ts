@@ -69,10 +69,6 @@ export class AuthService {
     return !!this.user && roles.includes(this.user.role)
   }
 
-  userValue(): User | null {
-    return this.userSubject.value
-  }
-
   isAuthenticated(): boolean {
     return !!this.userSubject.value
   }
